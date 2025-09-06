@@ -9,8 +9,10 @@ function createWindow() {
   window = new electron.BrowserWindow({
     width: 600,
     height: 400,
+    resizable: true, 
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       webviewTag: true
     }
   })

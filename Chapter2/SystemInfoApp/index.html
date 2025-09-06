@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SystemInfo</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <h1>SystemInfo</h1>
+    <hr>
+    <h2>Electron內置的Node.js模塊</h2>
+    <div id="webview-container">
+        <webview 
+            id="webview"
+            src="https://www.electronjs.org">
+        </webview>
+    </div>
+    <hr>
+    <h2>Node.js的os模塊</h2>
+    <div id='hostname' class='info'>
+        <label>主機名：</label>
+        <span>Loading</span>
+    </div>
+    <div id='cpu' class='info'>
+        <label>CPU：</label>
+        <span>Loading</span>
+    </div>
+    <div id='cpu-arch' class='info'>
+        <label>CPU架構：</label>
+        <span>Loading</span>
+    </div>
+    <div id='platform' class='info'>
+        <label>平台：</label>
+        <span>Loading</span>
+    </div>
+    <div id='freemem' class='info'>
+        <label>剩餘內存：</label>
+        <span>Loading</span>
+    </div>
+    <div id='totalmem' class='info'>
+        <label>總內存：</label>
+        <span>Loading</span>
+    </div>
+    <div id='uptime' class='info'>
+        <label>系統運行時間：</label>
+        <span>Loading</span>
+    </div>
+    <div id='disk' class='info'>
+        <label>硬碟空間：</label>
+        <span>Loading</span>
+    </div>
+
+    <script type="text/javascript" src="./window.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('webview-container');
+            const webview = document.getElementById('webview');
+            if (container && webview) {
+                // Set initial size
+                container.style.width = window.innerWidth + 'px';
+                container.style.height = (window.innerHeight / 2) + 'px';
+                webview.style.width = '100%';
+                webview.style.height = '100%';
+
+                // Observe container resize and update webview size
+                const resizeObserver = new ResizeObserver(() => {
+                    webview.style.width = container.offsetWidth + 'px';
+                    webview.style.height = container.offsetHeight + 'px';
+                });
+                resizeObserver.observe(container);
+            }
+        });
+    </script>
+</body>
+</html>
